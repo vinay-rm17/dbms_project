@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travels List</title>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f3f4f6;
+            color: #111827;
+            border-bottom: 2px solid #d1d5db;
+        }
+        td {
+            border-bottom: 1px solid #d1d5db;
+        }
+        td:last-child {
+            text-align: center;
+        }
+        .book-now-btn {
+            background-color: #3b82f6;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .book-now-btn:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Travels from {{ source }} to {{ destination }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Travel Name</th>
+                    <th>Bus Number</th>
+                    <th>Cost</th>
+                    <th>Book</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in travel_details %}
+                    <tr>
+                        <td>{{ travel.name }}</td>
+                        <td>{{ travel.number }}</td>
+                        <td>{{ travel.cost }}</td>
+                        <td>
+                            <button onclick="bookNow('{{ travel.name }}', '{{ travel.number }}', '{{ travel.cost }}')" class="book-now-btn">Book Now</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function bookNow(travelName, travelNumber, travelCost) {
+            window.location.href = `/booking/ticket/?travelName=${travelName}&travelNumber=${travelNumber}&travelCost=${travelCost}`;
+        }
+    </script>
+</body>
+</html>

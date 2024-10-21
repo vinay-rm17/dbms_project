@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <title>Bus Booking Website</title>
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFEB3B; /* Yellow background */
+            color: #000; /* Black text */
+        }
+        .carousel-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .booking-box {
+            background-color: #FFF; /* White background for the booking box */
+            color: #000; /* Black text */
+            padding: 1.5rem; /* Padding */
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .booking-box h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .booking-box form {
+            display: flex;
+            flex-direction: column;
+        }
+        .booking-box label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .booking-box input {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #ddd;
+        }
+        .booking-box button {
+            padding: 0.75rem;
+            background-color: #FFA000; /* Custom yellow */
+            color: #FFF;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+        .booking-box button:hover {
+            background-color: #FF8F00; /* Darker shade on hover */
+        }
+        .info-section {
+            padding: 2rem;
+            margin: 1rem 0;
+            background-color: #FFF;
+            color: #000;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .info-section h2 {
+            font-family: 'Georgia', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .info-section p {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+    <h1 class="text-4xl font-bold mb-8">RED BUS</h1>
+    <div class="carousel-container swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://www.bdtask.com/blog/uploads/web-based-bus-reservation-system.jpg" alt="Bus 1"></div>
+            <div class="swiper-slide"><img src="https://offercdn.paytm.com/blog/2023/06/firstbus-web.jpg" alt="Bus 2"></div>
+            <div class="swiper-slide"><img src="https://via.placeholder.com/800x400?text=Bus+3&img=3" alt="Bus 3"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    <div class="booking-box">
+        <h2>India's No.1 Online Bus Booking Site</h2>
+        <form method="POST" action="{% url 'booking' %}">
+            {% csrf_token %}
+            <div>
+                <label for="source">Source</label>
+                <input type="text" id="source" name="source" placeholder="Enter The Source" class="w-full p-2 rounded bg-gray-100 border border-gray-300 focus:outline-none focus:border-blue-500">
+            </div>
+            <div>
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter The Destination" class="w-full p-2 rounded bg-gray-100 border border-gray-300 focus:outline-none focus:border-blue-500">
+            </div>
+            <div>
+                <label for="travel_date">Travel Date</label>
+                <input type="date" id="travel_date" name="travel_date" class="w-full p-2 rounded bg-gray-100 border border-gray-300 focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="text-center">
+                <button id="b" type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Book Now</button>
+            </div>
+        </form>
+    </div>
+    <div class="info-section">
+        <h2>About Our Buses</h2>
+        <p>Our fleet of buses includes a variety of options to suit your needs, from luxury coaches to economical buses. All our buses are equipped with modern amenities to ensure a comfortable journey.</p>
+    </div>
+    <div class="info-section">
+        <h2>Safety Measures</h2>
+        <p>Your safety is our top priority. All our buses are regularly sanitized, and we follow strict safety protocols to ensure a safe travel experience for all our passengers.</p>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+</html>
